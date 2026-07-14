@@ -1,0 +1,14 @@
+import { useState } from 'react';
+import { categories } from '../data/categories';
+
+export function NewSolution() { return <SubmissionForm kind="solution" title="Cadastrar solução" description="Compartilhe uma proposta prática para resolver um problema real." />; }
+export function NewProblem() { return <SubmissionForm kind="problem" title="Cadastrar problema" description="Registre um desafio relevante para receber e conectar soluções." />; }
+
+type Kind = 'solution' | 'problem';
+
+function SubmissionForm({ kind, title, description }: { kind: Kind; title: string; description: string }) {
+  const [submitted, setSubmitted] = useState(false);
+  return <div className="mx-auto max-w-3xl space-y-6"><header><h1 className="text-3xl font-semibold tracking-tight">{title}</h1><p className="mt-2 text-zinc-600">{description}</p></header><form onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }} className="space-y-4 rounded-[2rem] border border-zinc-200 bg-white p-6 shadow-sm"><Field label="Título" name="title" placeholder={kind === 'solution' ? 'Ex.: Painel mínimo para pequenos negócios' : 'Ex.: Falta de dados em pequenos negócios'} /><label className="block"><span className="mb-2 block text-sm font-medium text-zinc-700">Categoria</span><select required name="category" className="w-full rounded-2xl border border-zinc-200 px-4 py-3 outline-none ring-zinc-950/10 focus:ring-4"><option value="">Selecione uma categoria</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label><label className="block"><span className="mb-2 block text-sm font-medium text-zinc-700">Resumo</span><textarea required name="summary" rows={3} className="w-full rounded-2xl border border-zinc-200 px-4 py-3 outline-none ring-zinc-950/10 focus:ring-4" placeholder="Descreva em poucas linhas." /></label><label className="block"><span className="mb-2 block text-sm font-medium text-zinc-700">Descrição completa</span><textarea required name="description" rows={7} className="w-full rounded-2xl border border-zinc-200 px-4 py-3 outline-none ring-zinc-950/10 focus:ring-4" placeholder="Inclua contexto, público, etapas e impacto esperado." /></label><button className="rounded-full bg-zinc-950 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800">Enviar {kind === 'solution' ? 'solução' : 'problema'}</button>{submitted && <p className="rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-700">Cadastro recebido localmente. A persistência no Supabase será ativada em uma próxima fase.</p>}</form></div>;
+}
+
+function Field({ label, name, placeholder }: { label: string; name: string; placeholder: string }) { return <label className="block"><span className="mb-2 block text-sm font-medium text-zinc-700">{label}</span><input required name={name} placeholder={placeholder} className="w-full rounded-2xl border border-zinc-200 px-4 py-3 outline-none ring-zinc-950/10 focus:ring-4" /></label>; }
