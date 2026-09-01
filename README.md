@@ -26,7 +26,7 @@ Atualmente, venho construindo plataformas voltadas para **gestão, produtividade
 ### 💡 Banco de Soluções
 Plataforma colaborativa para transformar problemas, ideias e experiências em conhecimento reutilizável, permitindo registrar, consultar e compartilhar soluções.
 
-### 🎯 UP-FINE Performance
+### 🎯 Plataforma de Avaliação de Desempenho de colaboradores
 Ecossistema de gestão de desempenho pensado para avaliações, desenvolvimento de pessoas, PDI, feedbacks, sucessão, indicadores e inteligência de RH.
 
 ### 📊 MeuNegócio 360
